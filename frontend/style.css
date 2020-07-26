@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.liste img {
+    width: 200px;
+    height: 200px;
+}
+
+#listeProduits {
+    display:flex;
+    list-style: none;
+}

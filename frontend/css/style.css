@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.liste img {
+  width: 300px;
+  height: 300px;
+}
+
+#listeProduits {
+  display: flex;
+  list-style: none;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,2 +1,3 @@
-#Openclassrooms Projet 5
-Site de e-commerce
+# Openclassrooms Projet 5
+
+Orinoco - Site de e-commerce

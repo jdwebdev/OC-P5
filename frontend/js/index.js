@@ -8,10 +8,7 @@ request.onreadystatechange= function () {
         let response = JSON.parse(this.responseText);
         console.log(response);
 
-        // divtest.textContent = `${response[0].name}`;
-
         for (let i=0; i < response.length; i++) {
-            // divtest.textContent = response[i].name;
             let li = document.createElement("li");
             li.className = "liste";
             let title = document.createElement("p");

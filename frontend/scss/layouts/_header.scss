@@ -1,0 +1,36 @@
+header {
+    height: 60px;
+    padding: 10px;
+    background-color: #8D6E63;
+}
+
+.navigation {
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+
+    &__heading {
+        font-size: 30px;
+        font-family: $main-font;
+        color: #EEE;
+    }
+    &__btn {
+        width: 100px;
+        display: flex;
+        justify-content: space-between;
+    }
+    i {
+        font-size: 30px;
+        color: #EEE;
+    }
+    button {
+        text-decoration: none;
+        background: none;
+        border: none;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+

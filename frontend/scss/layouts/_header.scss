@@ -1,7 +1,7 @@
 header {
-    height: 60px;
-    padding: 10px;
-    background-color: #8D6E63;
+    height: 70px;
+    padding: 0.8rem;
+    background-color: $main-color;
 }
 
 .navigation {
@@ -9,10 +9,14 @@ header {
     justify-content: space-around;
     align-items: center;
 
+    a {
+        text-decoration: none; 
+    }
+
     &__heading {
         font-size: 30px;
         font-family: $main-font;
-        color: #EEE;
+        color: $main-font-color;
     }
     &__btn {
         width: 100px;
@@ -21,15 +25,7 @@ header {
     }
     i {
         font-size: 30px;
-        color: #EEE;
-    }
-    button {
-        text-decoration: none;
-        background: none;
-        border: none;
-        &:hover{
-            cursor: pointer;
-        }
+        color: $main-font-color;
     }
 }
 

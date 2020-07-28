@@ -1,4 +1,3 @@
-const divtest = document.getElementById("test");
 const listeProduits = document.getElementById("listeProduits");
 
 
@@ -10,15 +9,21 @@ request.onreadystatechange= function () {
 
         for (let i=0; i < response.length; i++) {
             let li = document.createElement("li");
-            li.className = "liste";
+            
             let title = document.createElement("p");
             let img = document.createElement("img");
+            let price = document.createElement("p");
+            let nb = response[i].price / 100;
             
             title.textContent = response[i].name;
+            li.className = "liste";
             li.appendChild(title);
             li.appendChild(img);
+            li.appendChild(price);
             
             img.setAttribute("src", response[i].imageUrl);
+            price.textContent = nb.toFixed(2).replace(".",",");
+            
             listeProduits.appendChild(li);
         }
         

@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
 
 /* Fonts */
 $main-font: 'Permanent Marker', cursive;
+$price-font: 'Pacifico', cursive;
+
+/* Colors */
+$main-color: #8D6E63;
+$main-font-color: #eee;
+
+/* Media queries */
+$breakpoints: (
+    middle: 768px,
+    large: 1024px
+)

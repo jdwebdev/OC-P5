@@ -1,14 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap");
 /* Fonts */
+/* Colors */
+/* Media queries */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  font-size: 62.5%;
+}
+
 .liste img {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
 
 #listeProduits {
@@ -17,8 +23,8 @@
 }
 
 header {
-  height: 60px;
-  padding: 10px;
+  height: 70px;
+  padding: 0.8rem;
   background-color: #8D6E63;
 }
 
@@ -27,10 +33,13 @@ header {
   justify-content: space-around;
   align-items: center;
 }
+.navigation a {
+  text-decoration: none;
+}
 .navigation__heading {
   font-size: 30px;
   font-family: "Permanent Marker", cursive;
-  color: #EEE;
+  color: #eee;
 }
 .navigation__btn {
   width: 100px;
@@ -39,15 +48,53 @@ header {
 }
 .navigation i {
   font-size: 30px;
-  color: #EEE;
+  color: #eee;
 }
-.navigation button {
-  text-decoration: none;
-  background: none;
+
+#productList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+.product {
+  width: 90vw;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-shadow: 1px 1px 10px;
+  border-radius: 1rem;
+  text-align: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  color: #444;
+}
+.product__name {
+  margin-bottom: 1rem;
+}
+.product__img {
+  width: 100%;
+}
+.product__price {
+  margin: 0 auto;
+  padding: 0.6rem;
+  font-family: "Pacifico", cursive;
+}
+.product__btn {
+  background-color: #8D6E63;
+  color: #eee;
+  font-family: "Permanent Marker", cursive;
+  font-size: 1.2rem;
+  padding: 1rem;
   border: none;
+  border-radius: 0.6rem;
+  box-shadow: 3px 3px 1px black;
 }
-.navigation button:hover {
+.product__btn:hover {
   cursor: pointer;
+  /* 
+      Create hover animation : boxshadow 
+  */
 }
 
 /*# sourceMappingURL=style.css.map */

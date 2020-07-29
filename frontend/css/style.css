@@ -53,6 +53,18 @@ header {
   color: #eee;
 }
 
+footer {
+  padding: 0.8rem;
+  margin-top: 1rem;
+  background-color: #8D6E63;
+}
+footer p {
+  font-family: "Permanent Marker", cursive;
+  color: #eee;
+  font-size: 1rem;
+  text-align: center;
+}
+
 #productList {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,5 @@
 const listeProduits = document.getElementById("listeProduits");
-
+const productList = document.getElementById("productList");
 
 let request = new XMLHttpRequest();
 request.onreadystatechange= function () {
@@ -9,28 +9,33 @@ request.onreadystatechange= function () {
 
         for (let i=0; i < response.length; i++) {
             let li = document.createElement("li");
-            
-            let title = document.createElement("p");
+            let name = document.createElement("h2");
             let img = document.createElement("img");
-            let price = document.createElement("p");
+            let price = document.createElement("div");
+            let btn = document.createElement("button");
             let nb = response[i].price / 100;
-            
-            title.textContent = response[i].name;
-            li.className = "liste";
-            li.appendChild(title);
+
+            li.className = "product";
+            name.className = "product__name";
+            img.className = "product__img";
+            price.className = "product__price"
+            btn.className = "product__btn";
+
+            name.textContent = response[i].name;
+            img.setAttribute("src", response[i].imageUrl);
+            price.textContent = nb.toFixed(2).replace(".",",") + "€";
+            btn.textContent = "Voir l'offre";
+
+            li.appendChild(name);
             li.appendChild(img);
             li.appendChild(price);
-            
-            img.setAttribute("src", response[i].imageUrl);
-            price.textContent = nb.toFixed(2).replace(".",",");
-            
-            listeProduits.appendChild(li);
+            li.appendChild(btn);
+
+            productList.appendChild(li);
         }
-        
     }
 }
 
 
 request.open("GET", "http://localhost:3000/api/teddies");
-
 request.send();

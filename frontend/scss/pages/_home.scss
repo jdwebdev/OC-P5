@@ -9,9 +9,9 @@
     width: 90vw;
     margin: 0 auto;
     margin-top: 1rem;
+    margin-bottom: 1rem;
     padding: 1rem;
-    // border: 2px solid black;
-    box-shadow: 1px 1px 10px ;
+    box-shadow: 1px 1px 10px;
     border-radius: 1rem;
     text-align: center;
     font-family: $main-font;
@@ -44,7 +44,9 @@
         &:hover {
             cursor: pointer;
             /* 
-                Create hover animation : boxshadow 
+                Create hover animation : 
+                boxshadow 
+                opacity
             */
         }
     }

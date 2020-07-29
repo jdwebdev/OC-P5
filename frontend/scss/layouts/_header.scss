@@ -6,25 +6,26 @@ header {
 
 .navigation {
     display:flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     a {
         text-decoration: none; 
     }
-
     &__heading {
-        font-size: 30px;
+        margin-left: 1rem;
+        font-size: 1.9rem;
         font-family: $main-font;
         color: $main-font-color;
     }
     &__btn {
         width: 100px;
+        margin-right: 1rem;
         display: flex;
         justify-content: space-between;
     }
     i {
-        font-size: 30px;
+        font-size: 2rem;
         color: $main-font-color;
     }
 }

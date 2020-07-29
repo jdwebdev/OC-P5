@@ -30,24 +30,26 @@ header {
 
 .navigation {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .navigation a {
   text-decoration: none;
 }
 .navigation__heading {
-  font-size: 30px;
+  margin-left: 1rem;
+  font-size: 1.9rem;
   font-family: "Permanent Marker", cursive;
   color: #eee;
 }
 .navigation__btn {
   width: 100px;
+  margin-right: 1rem;
   display: flex;
   justify-content: space-between;
 }
 .navigation i {
-  font-size: 30px;
+  font-size: 2rem;
   color: #eee;
 }
 
@@ -61,6 +63,7 @@ header {
   width: 90vw;
   margin: 0 auto;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   box-shadow: 1px 1px 10px;
   border-radius: 1rem;
@@ -93,7 +96,9 @@ header {
 .product__btn:hover {
   cursor: pointer;
   /* 
-      Create hover animation : boxshadow 
+      Create hover animation : 
+      boxshadow 
+      opacity
   */
 }
 

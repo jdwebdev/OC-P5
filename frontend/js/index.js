@@ -12,7 +12,7 @@ request.onreadystatechange= function () {
             let name = document.createElement("h2");
             let img = document.createElement("img");
             let price = document.createElement("div");
-            let btn = document.createElement("button");
+            let btn = document.createElement("a");
             let nb = response[i].price / 100;
 
             li.className = "product";
@@ -25,6 +25,8 @@ request.onreadystatechange= function () {
             img.setAttribute("src", response[i].imageUrl);
             price.textContent = nb.toFixed(2).replace(".",",") + "€";
             btn.textContent = "Voir l'offre";
+            btn.href = "./product.html";
+            
 
             li.appendChild(name);
             li.appendChild(img);

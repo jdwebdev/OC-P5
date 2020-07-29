@@ -12,16 +12,6 @@ body {
   font-size: 62.5%;
 }
 
-.liste img {
-  width: 200px;
-  height: 200px;
-}
-
-#listeProduits {
-  display: flex;
-  list-style: none;
-}
-
 header {
   height: 70px;
   padding: 0.8rem;
@@ -98,12 +88,14 @@ footer p {
 .product__btn {
   background-color: #8D6E63;
   color: #eee;
-  font-family: "Permanent Marker", cursive;
   font-size: 1.2rem;
+  display: inline-block;
+  margin-bottom: 1rem;
   padding: 1rem;
   border: none;
   border-radius: 0.6rem;
   box-shadow: 3px 3px 1px black;
+  text-decoration: none;
 }
 .product__btn:hover {
   cursor: pointer;
@@ -112,6 +104,55 @@ footer p {
       boxshadow 
       opacity
   */
+}
+
+.productDetail {
+  width: 90vw;
+  margin: 1rem auto 1rem auto;
+  padding: 1rem;
+  background-color: #ddd;
+  text-align: center;
+  font-family: "Pacifico", cursive;
+  color: #444;
+}
+.productDetail h2 {
+  font-size: 1.2rem;
+  font-family: "Permanent Marker", cursive;
+}
+.productDetail img {
+  width: 100%;
+  margin: 1rem auto;
+}
+.productDetail p {
+  text-align: justify;
+  font-size: 0.8rem;
+}
+.productDetail div {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+.productDetail label {
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.productDetail select {
+  border: none;
+  border-radius: 1rem 0px 0px 1rem;
+  padding: 0.2rem;
+}
+.productDetail button {
+  background-color: #8D6E63;
+  color: #eee;
+  font-family: "Permanent Marker", cursive;
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.6rem;
+  box-shadow: 3px 3px 1px black;
+}
+.productDetail button :hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

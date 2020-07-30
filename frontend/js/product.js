@@ -24,7 +24,7 @@ request.send();
 // Faire une boucle et tester quel objet correspond à l'id en question puis l'afficher 
 
 function displayProduct(products) {
-    products.forEach (function (product){
+    products.forEach ( product => {
         if (product._id === productId) {
             console.log(product.name);
 

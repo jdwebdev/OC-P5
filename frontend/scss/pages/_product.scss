@@ -8,33 +8,33 @@
     color: #444;
 
 
-    h2 {
+    &__name {
         font-size: 1.2rem;
         font-family: $main-font;
-
     }
-    img {
+    &__img {
         width: 100%;
         margin: 1rem auto;
     }
-    p {
+    &__description {
+        margin-bottom: 1rem;
         text-align: justify;
         font-size:0.8rem;
     }
-    div {
+    &__price {
         font-size: 1rem;
         margin-bottom: 1rem;
     }
-    label {
+    &__label {
         font-size: 1rem;
         margin-right: 1rem;
     }
-    select {
+    &__select {
         border: none;
         border-radius: 1rem 0px 0px 1rem;
         padding: 0.2rem;
     }
-    button {
+    &__btn {
         background-color: $main-color;
         color: $main-font-color;
         font-family: $main-font;

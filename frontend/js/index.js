@@ -2,7 +2,7 @@ const listeProduits = document.getElementById("listeProduits");
 const productList = document.getElementById("productList");
 
 let request = new XMLHttpRequest();
-request.onreadystatechange= function () {
+request.onreadystatechange = function () {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         let response = JSON.parse(this.responseText);
         console.log(response);
@@ -25,7 +25,7 @@ request.onreadystatechange= function () {
             img.setAttribute("src", response[i].imageUrl);
             price.textContent = nb.toFixed(2).replace(".",",") + "€";
             btn.textContent = "Voir l'offre";
-            btn.href = "./product.html";
+            btn.href = `./product.html?${response[i]._id}`;
             
 
             li.appendChild(name);
@@ -33,8 +33,16 @@ request.onreadystatechange= function () {
             li.appendChild(price);
             li.appendChild(btn);
 
+            /* Test transfert ID */
+            let testid = document.createElement("p");
+            testid.textContent = `id: ${response[i]._id}`;
+            li.appendChild(testid);
+
+
             productList.appendChild(li);
         }
+    } else {
+        console.log("error");
     }
 }
 

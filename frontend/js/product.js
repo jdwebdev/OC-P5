@@ -5,14 +5,14 @@ let request = new XMLHttpRequest();
 request.onreadystatechange = function () {
     if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
         let response = JSON.parse(this.responseText);
-        // console.log("OK");
+        console.log("OK");
         // console.log(this.readyState);
         // console.log(this.status);
         // console.log(response);
         displayProduct(response);
     }
     else {
-        // console.log("ERROR");
+        console.log("ERROR");
         // console.log(this.readyState);
         // console.log(this.status);
     }

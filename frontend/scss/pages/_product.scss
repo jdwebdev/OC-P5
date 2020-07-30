@@ -6,28 +6,59 @@
     text-align: center;
     font-family: $price-font;
     color: #444;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 15px gray;
+
+    @include middleScreen {
+        max-width: 750px;
+    }
 
 
     h2 {
         font-size: 1.2rem;
         font-family: $main-font;
+
+        @include middleScreen {
+            font-size: 2rem;
+        }
     }
     img {
         width: 100%;
+        max-width: 600px;
         margin: 1rem auto;
+
+        @include smallScreen {
+        }
     }
     p {
-        margin-bottom: 1rem;
+        margin: 0 auto;
         text-align: justify;
         font-size:0.8rem;
+        max-width: 600px;
+
+        @include smallScreen {
+            font-size: 1rem;
+        }
+
+        @include middleScreen {
+            font-size: 1.2rem;
+        }
     }
     div {
         font-size: 1rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
+
+        @include middleScreen {
+            font-size: 1.2rem;
+        }
     }
     label {
         font-size: 1rem;
         margin-right: 1rem;
+        @include middleScreen {
+            font-size: 1.2rem;
+        }
     }
     select {
         border: none;
@@ -38,6 +69,7 @@
         background-color: $main-color;
         color: $main-font-color;
         font-family: $main-font;
+        font-size: 1rem;
 
         display: inline-block;
         margin: 1rem;

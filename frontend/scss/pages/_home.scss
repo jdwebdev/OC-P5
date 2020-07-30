@@ -1,8 +1,14 @@
 #productList {
     display: flex;
     flex-direction: column;
-
     list-style: none;
+    // margin: 0 auto;
+
+    @include middleScreen {
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
 }
 
 .product {
@@ -18,12 +24,21 @@
     font-size: 1.2rem;
     color: #444;
 
+    @include middleScreen {
+        max-width: 350px;
+        margin: 15px;
+    }
+
     &__name {
         margin-bottom: 1rem;
     }
 
     &__img {
         width: 100%;
+        @include middleScreen {
+            max-height: 204px;
+        }
+        
     }
     &__price {
         margin: 0 auto;

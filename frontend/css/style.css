@@ -2,6 +2,7 @@
 /* Fonts */
 /* Colors */
 /* Media queries */
+/* Media queries */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +11,23 @@
 
 body {
   font-size: 62.5%;
+}
+
+main {
+  margin: 1rem;
+  margin-bottom: 6rem;
+}
+@media screen and (min-width: 768px) {
+  main {
+    max-width: 900px;
+    margin: 1rem auto;
+    margin-bottom: 6rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  main {
+    max-width: 1400px;
+  }
 }
 
 header {
@@ -45,8 +63,11 @@ header {
 
 footer {
   padding: 0.8rem;
-  margin-top: 1rem;
   background-color: #8D6E63;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 footer p {
   font-family: "Permanent Marker", cursive;
@@ -59,6 +80,13 @@ footer p {
   display: flex;
   flex-direction: column;
   list-style: none;
+}
+@media screen and (min-width: 768px) {
+  #productList {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
 }
 
 .product {
@@ -74,11 +102,22 @@ footer p {
   font-size: 1.2rem;
   color: #444;
 }
+@media screen and (min-width: 768px) {
+  .product {
+    max-width: 350px;
+    margin: 15px;
+  }
+}
 .product__name {
   margin-bottom: 1rem;
 }
 .product__img {
   width: 100%;
+}
+@media screen and (min-width: 768px) {
+  .product__img {
+    max-height: 204px;
+  }
 }
 .product__price {
   margin: 0 auto;
@@ -114,27 +153,62 @@ footer p {
   text-align: center;
   font-family: "Pacifico", cursive;
   color: #444;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 15px gray;
+}
+@media screen and (min-width: 768px) {
+  .productDetail {
+    max-width: 750px;
+  }
 }
 .productDetail h2 {
   font-size: 1.2rem;
   font-family: "Permanent Marker", cursive;
 }
+@media screen and (min-width: 768px) {
+  .productDetail h2 {
+    font-size: 2rem;
+  }
+}
 .productDetail img {
   width: 100%;
+  max-width: 600px;
   margin: 1rem auto;
 }
 .productDetail p {
-  margin-bottom: 1rem;
+  margin: 0 auto;
   text-align: justify;
   font-size: 0.8rem;
+  max-width: 600px;
+}
+@media screen and (min-width: 500px) {
+  .productDetail p {
+    font-size: 1rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .productDetail p {
+    font-size: 1.2rem;
+  }
 }
 .productDetail div {
   font-size: 1rem;
+  margin-top: 1rem;
   margin-bottom: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .productDetail div {
+    font-size: 1.2rem;
+  }
 }
 .productDetail label {
   font-size: 1rem;
   margin-right: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .productDetail label {
+    font-size: 1.2rem;
+  }
 }
 .productDetail select {
   border: none;
@@ -145,6 +219,7 @@ footer p {
   background-color: #8D6E63;
   color: #eee;
   font-family: "Permanent Marker", cursive;
+  font-size: 1rem;
   display: inline-block;
   margin: 1rem;
   padding: 1rem;

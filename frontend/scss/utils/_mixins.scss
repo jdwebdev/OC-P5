@@ -1,0 +1,16 @@
+/* Media queries */
+@mixin smallScreen{
+    @media screen and (min-width: map-get($breakpoints, small)){
+        @content;
+    }
+}
+@mixin middleScreen{
+    @media screen and (min-width: map-get($breakpoints, middle)){
+        @content;
+    }
+}
+@mixin largeScreen{
+    @media screen and (min-width: map-get($breakpoints, large)){
+        @content;
+    }
+}

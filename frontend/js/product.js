@@ -41,7 +41,7 @@ function displayProduct(products) {
                 <div>${convertedPrice}€</div>
                 <label for="color-select">Choisir une couleur</label>
                 <select class="productDetail__select" name="colors" id="color-select"></select>
-                <button>Ajouter au panier</button> 
+                <button>Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
                 `
             );
 

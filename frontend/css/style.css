@@ -115,33 +115,33 @@ footer p {
   font-family: "Pacifico", cursive;
   color: #444;
 }
-.productDetail__name {
+.productDetail h2 {
   font-size: 1.2rem;
   font-family: "Permanent Marker", cursive;
 }
-.productDetail__img {
+.productDetail img {
   width: 100%;
   margin: 1rem auto;
 }
-.productDetail__description {
+.productDetail p {
   margin-bottom: 1rem;
   text-align: justify;
   font-size: 0.8rem;
 }
-.productDetail__price {
+.productDetail div {
   font-size: 1rem;
   margin-bottom: 1rem;
 }
-.productDetail__label {
+.productDetail label {
   font-size: 1rem;
   margin-right: 1rem;
 }
-.productDetail__select {
+.productDetail select {
   border: none;
   border-radius: 1rem 0px 0px 1rem;
   padding: 0.2rem;
 }
-.productDetail__btn {
+.productDetail button {
   background-color: #8D6E63;
   color: #eee;
   font-family: "Permanent Marker", cursive;
@@ -152,7 +152,7 @@ footer p {
   border-radius: 0.6rem;
   box-shadow: 3px 3px 1px black;
 }
-.productDetail__btn :hover {
+.productDetail button :hover {
   cursor: pointer;
 }
 

@@ -1,17 +1,12 @@
 const url = "http://localhost:3000/api/teddies"
 
-
-
 /* Méthode xhr basique */
 
 // let request = new XMLHttpRequest();
 // request.onreadystatechange = function () {
 //     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
 //         let response = JSON.parse(this.responseText);
-//         console.log(response);
-
 //         displayAllProducts(response);
-
 //     } else {
 //         console.log("error");
 //     }
@@ -74,7 +69,7 @@ async function getProducts(url) {
 }
 
 getProducts(url).then( products => {
-    console.log("ok");
+    console.log("OK");
     displayAllProducts(products);
 }).catch( e => {
     console.log(e);
@@ -82,44 +77,22 @@ getProducts(url).then( products => {
 // ----------------------------------------------------------
 
 
-
-
 function displayAllProducts(products) {
 
     const productList = document.getElementById("productList"); 
 
     products.forEach( product => {
-        let li = document.createElement("li");
-        let name = document.createElement("h2");
-        let img = document.createElement("img");
-        let price = document.createElement("div");
-        let btn = document.createElement("a");
-        let nb = product.price / 100;
 
-        li.className = "product";
-        name.className = "product__name";
-        img.className = "product__img";
-        price.className = "product__price"
-        btn.className = "product__btn";
+        let convertedPrice = (product.price / 100).toFixed(2).replace(".",",");
 
-        name.textContent = product.name;
-        img.setAttribute("src", product.imageUrl);
-        price.textContent = nb.toFixed(2).replace(".",",") + "€";
-        btn.textContent = "Voir l'offre";
-        btn.href = `./product.html?${product._id}`;
-        
-
-        li.appendChild(name);
-        li.appendChild(img);
-        li.appendChild(price);
-        li.appendChild(btn);
-
-        /* Test transfert ID */
-        let testid = document.createElement("p");
-        testid.textContent = `id: ${product._id}`;
-        li.appendChild(testid);
-
-
-        productList.appendChild(li);
+        productList.insertAdjacentHTML("beforeend",`
+            <li class="product">
+                <h2 class="product__name">${product.name}</h2>
+                <img class="product__img" src="${product.imageUrl}" alt="Photo Teddy">
+                <div class="product__price">${convertedPrice}€</div>
+                <a class="product__btn" href="./product.html?${product._id}">Voir l'offre</a>
+            </li>
+            `
+        )
     })
 }

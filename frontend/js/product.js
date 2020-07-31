@@ -1,6 +1,7 @@
 const url = "http://localhost:3000/api/teddies"
 const productId = window.location.search.substr(1);
-console.log(`Product ID: ${productId}`);
+
+let cartProducts = [];
 
 async function getProducts(url) {
     try {
@@ -41,9 +42,15 @@ function displayProduct(products) {
                 <div>${convertedPrice}€</div>
                 <label for="color-select">Choisir une couleur</label>
                 <select class="productDetail__select" name="colors" id="color-select"></select>
-                <button>Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
+                <button class="addToCart">Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
                 `
             );
+
+            let addToCartBtn = document.querySelector(".addToCart");
+
+            addToCartBtn.addEventListener('click', () => {
+                addToCart(product);
+            })
 
             let select = document.querySelector(".productDetail__select");
             let colors = product.colors;
@@ -55,4 +62,11 @@ function displayProduct(products) {
             })
         }
     })
+}
+
+function addToCart (product) {
+
+    cartProducts.push(product);
+    console.log(cartProducts);
+    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
 }

@@ -61,6 +61,19 @@ header {
   color: #eee;
 }
 
+.cart__nb {
+  border-radius: 1rem;
+  position: relative;
+  top: -10px;
+  right: -20px;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  font-size: 1rem;
+  color: #fff;
+  text-align: center;
+}
+
 footer {
   padding: 0.8rem;
   background-color: #8D6E63;
@@ -227,7 +240,7 @@ footer p {
   border-radius: 0.6rem;
   box-shadow: 3px 3px 1px black;
 }
-.productDetail button :hover {
+.productDetail button:hover {
   cursor: pointer;
 }
 

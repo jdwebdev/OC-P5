@@ -70,15 +70,12 @@ function displayProduct(products) {
 function addToCart (product) {
 
     if (localStorage.getItem('cartProducts') === null) {
-        console.log("null");
         let cartProducts = [];
         cartProducts.push(product);
-        console.log(cartProducts);
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
         checkCart();
     }
     else {
-        console.log("pas null");
         let cp = JSON.parse(localStorage.getItem('cartProducts'));
         cp.push(product);
         localStorage.setItem('cartProducts', JSON.stringify(cp));

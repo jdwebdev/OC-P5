@@ -17,5 +17,9 @@ checkCart();
 
 function refreshCart(cp) {
     let nb = document.querySelector(".cart__nb");
-    nb.textContent = cp.length;
+    if (localStorage.length !== 0) {
+        nb.textContent = cp.length;
+    } else {
+        nb.parentNode.removeChild(nb);
+    }
 }

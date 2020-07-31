@@ -77,7 +77,6 @@ function addToCart (product) {
         let cp = JSON.parse(localStorage.getItem('cartProducts'));
         cp.push(product);
         localStorage.setItem('cartProducts', JSON.stringify(cp));
-        // checkCart();
 
         refreshCart(cp);
     }

@@ -1,8 +1,6 @@
 const url = "http://localhost:3000/api/teddies"
 const productId = window.location.search.substr(1);
 
-let cartProducts = [];
-
 async function getProducts(url) {
     try {
         let response = await fetch(url);
@@ -66,7 +64,22 @@ function displayProduct(products) {
 
 function addToCart (product) {
 
-    cartProducts.push(product);
-    console.log(cartProducts);
-    localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+    if (localStorage.getItem('cartProducts') === null) {
+        console.log("null");
+        let cartProducts = [];
+        cartProducts.push(product);
+        console.log(cartProducts);
+        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+        checkCart();
+    }
+    else {
+        console.log("pas null");
+        let cp = JSON.parse(localStorage.getItem('cartProducts'));
+        cp.push(product);
+        localStorage.setItem('cartProducts', JSON.stringify(cp));
+        // checkCart();
+
+        refreshCart(cp);
+    }
+    
 }

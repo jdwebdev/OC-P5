@@ -1,4 +1,4 @@
-function displayCart(refresh=false) {
+function displayCart() {
 
     let section = document.querySelector(".cart-section");
 
@@ -6,7 +6,6 @@ function displayCart(refresh=false) {
         let products = JSON.parse(localStorage.getItem('cartProducts'));
         let total = 0;
         let index = 0;
-        console.log(index);
 
         section.insertAdjacentHTML("afterbegin", `
             <h2>Panier</h2>
@@ -31,7 +30,6 @@ function displayCart(refresh=false) {
             let convertedPrice = (product.price / 100).toFixed(2).replace(".",",");
             total = total + product.price;
             
-            
             tbody.insertAdjacentHTML("beforeend", `
                 <tr>
                     <td>${product.name}</td>
@@ -41,31 +39,13 @@ function displayCart(refresh=false) {
                 </tr>
             `)
 
-            // Trouver un moyen de récupérer la classe product-x 
-            // let deleteBtn = document.querySelector(`.product-${index}`);
-            // let deleteBtn = document.querySelector(`.cart-section__delete`);
-
-            // deleteBtn.addEventListener("click", (e) => {
-            //     // console.log(e.target.parentNode.parentNode);
-            //     console.log(e.target);
-            //     // console.log(products[index]);
-            // })
-
             if (index >= products.length -1) {
                 index=0;
             } else {
                 index++;
             }
-            //-----------------------------------------------------
-            
         })
 
-        
-        // deleteBtn.addEventListener("click", (e) => {
-        //     // console.log(e.target.parentNode.parentNode);
-        //     console.log(e.target);
-        // })
-        
         section.insertAdjacentHTML("beforeend", `
             <p class="cart-section__total">Total : ${(total/100).toFixed(2).replace(".",",")} €</p>
         `)
@@ -73,18 +53,7 @@ function displayCart(refresh=false) {
         let deleteBtn = document.querySelectorAll(`.cart-section__delete`);
         deleteBtn.forEach((btn) => {
             btn.addEventListener('click', (e) => {
-                let index = e.target.classList[1].slice(-1);
-                products.splice(index, 1);
-                localStorage.setItem('cartProducts', JSON.stringify(products));
-                if (products.length === 0) {
-                    localStorage.removeItem('cartProducts');
-                }
-
-                // let tr = e.target.parentNode.parentNode;
-                // tr.parentNode.removeChild(tr);    
-                section.innerHTML = "";
-                displayCart();
-                refreshCart(products);
+                deleteProduct(e, products, section);
             })
         })
 
@@ -97,6 +66,18 @@ function displayCart(refresh=false) {
             </p>
         `)
     }
+}
+
+function deleteProduct(e, products, section) {
+    let index = e.target.classList[1].slice(-1);
+    products.splice(index, 1);
+    localStorage.setItem('cartProducts', JSON.stringify(products));
+    if (products.length === 0) {
+        localStorage.removeItem('cartProducts');
+    }
+    section.innerHTML = "";
+    displayCart();
+    refreshCart(products);
 }
 
 displayCart();

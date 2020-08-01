@@ -82,5 +82,4 @@ function addToCart (product) {
 
         refreshCart(cp);
     }
-    
 }

@@ -1,59 +1,6 @@
 const url = "http://localhost:3000/api/teddies"
 
-/* Méthode xhr basique */
-
-// let request = new XMLHttpRequest();
-// request.onreadystatechange = function () {
-//     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-//         let response = JSON.parse(this.responseText);
-//         displayAllProducts(response);
-//     } else {
-//         console.log("error");
-//     }
-// }
-
-// request.open("GET", url);
-// request.send();
-// ----------------------------------------------
-
-
-/* Méthode Promise */
-
-// function getProducts (url) {
-
-//     return new Promise (resolve => {
-
-//         let request = new XMLHttpRequest();
-//         request.onreadystatechange = function() {
-
-//             // 4 <=> XMLHttpRequest.DONE
-//             if (this.readyState === 4) {
-//                 if (this.status === 200) {
-//                     let response = JSON.parse(this.responseText);
-//                     resolve(response);
-//                 }
-//             }
-//             else {
-//                 console.log(`this.readyState : ${this.readyState}`);
-//             }
-//         }
-//         request.open("GET", url);
-//         request.send();
-//     })
-// }
-
-// getProducts(url).then( response => {
-//     console.log("OK");
-//     displayAllProducts(response);
-
-// }).catch(e => {
-//     console.log(`Error: ${e}`);
-// })
-//----------------------------------------------
-
-
 /* Méthode fetch */ 
-
 async function getProducts(url) {
     try {
         let response = await fetch(url);
@@ -74,8 +21,6 @@ getProducts(url).then( products => {
 }).catch( e => {
     console.log(e);
 })
-// ----------------------------------------------------------
-
 
 function displayAllProducts(products) {
 

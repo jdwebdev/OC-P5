@@ -13,8 +13,6 @@ function checkCart() {
     }
 }
 
-checkCart();
-
 function refreshCart(cp) {
     let nb = document.querySelector(".cart__nb");
     if (localStorage.length !== 0) {
@@ -23,3 +21,5 @@ function refreshCart(cp) {
         nb.parentNode.removeChild(nb);
     }
 }
+
+checkCart();

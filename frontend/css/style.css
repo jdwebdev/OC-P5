@@ -253,6 +253,12 @@ footer p {
   font-size: 0.8rem;
   color: #444;
 }
+@media screen and (min-width: 768px) {
+  .cart-section {
+    max-width: 750px;
+    padding: 1rem;
+  }
+}
 .cart-section h2 {
   font-family: "Permanent Marker", cursive;
   margin: 1rem 0 1rem 0;
@@ -272,11 +278,12 @@ footer p {
 }
 .cart-section__delete {
   background-color: red;
+  color: #fff;
   width: 30px;
   height: 30px;
   border-radius: 1rem;
   border: none;
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .cart-section__table {
   margin: 0 auto;
@@ -286,14 +293,50 @@ footer p {
 .cart-section__table th, .cart-section__table td {
   padding: 2px;
 }
+.cart-section__table th:nth-child(4) {
+  width: 30px;
+}
 .cart-section__total {
   margin-top: 1rem;
+  margin-bottom: 1rem;
   font-family: "Pacifico", cursive;
   font-size: 1rem;
 }
 .cart-section__empty {
   margin-bottom: 1rem;
   font-size: 1rem;
+}
+
+.cart-form {
+  margin: 1rem auto;
+  padding: 5px;
+}
+.cart-form__group {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-form input {
+  height: 30px;
+  width: 70%;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+}
+.cart-form input:focus {
+  box-shadow: 1px 1px 8px green;
+  outline: none;
+  border: 1px solid green;
+}
+.cart-form button {
+  background-color: #8D6E63;
+  padding: 1rem;
+  font-family: "Permanent Marker", cursive;
+  color: #eee;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 1px black;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -15,7 +15,7 @@ function displayCart() {
                         <th>Nom</th>
                         <th>Couleur</th>
                         <th>Prix</th>
-                        <th>Suppr.</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody class="cart-section__tbody">
@@ -37,7 +37,7 @@ function displayCart() {
                     <td>${convertedPrice} €</td>
                     <td><button class="cart-section__delete product-${index}">X</button></td>
                 </tr>
-            `)
+            `);
 
             if (index >= products.length -1) {
                 index=0;
@@ -48,14 +48,42 @@ function displayCart() {
 
         section.insertAdjacentHTML("beforeend", `
             <p class="cart-section__total">Total : ${(total/100).toFixed(2).replace(".",",")} €</p>
-        `)
+        `);
+
+
+        section.insertAdjacentHTML("beforeend", `
+            <p class="">Veuillez remplir le formulaire suivant afin de valider la commande : </p>
+            <form class="cart-form" action="">
+                <div class="cart-form__group">
+                    <label for="firstname">Prénom : </label>
+                    <input id="firstname" type="text" placeholder="Votre prénom" required />
+                </div>
+                <div class="cart-form__group">
+                    <label for="name">Nom : </label>
+                    <input id="name" type="text" placeholder="Votre nom" required />
+                </div>
+                <div class="cart-form__group">
+                    <label for="address">Adresse  : </label>
+                    <input id="address" type="text" placeholder="Votre adresse" required />
+                </div>
+                <div class="cart-form__group">
+                    <label for="town">Ville : </label>
+                    <input id="town" type="text" placeholder="Votre ville" required />
+                </div>
+                <div class="cart-form__group">
+                    <label for="email">Email : </label>
+                    <input id="email" type="email" placeholder="exemple@email.com" required />
+                </div>
+                <button type="submit">Valider le panier</button>
+            </form>
+        `);
 
         let deleteBtn = document.querySelectorAll(`.cart-section__delete`);
         deleteBtn.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 deleteProduct(e, products, section);
-            })
-        })
+            });
+        });
 
     } else {
         section.insertAdjacentHTML("afterbegin", `

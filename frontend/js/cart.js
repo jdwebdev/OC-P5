@@ -2,11 +2,11 @@ let total = 0;
 
 function displayCart() {
 
-    let section = document.querySelector(".cart-section");
+    const section = document.querySelector(".cart-section");
 
     if (localStorage.getItem('cartProducts') !== null) {
         let products = JSON.parse(localStorage.getItem('cartProducts'));
-        // let total = 0;
+        total = 0;
         let index = 0;
 
         section.insertAdjacentHTML("afterbegin", `
@@ -50,6 +50,7 @@ function displayCart() {
 
         section.insertAdjacentHTML("beforeend", `
             <p class="cart-section__total">Total : ${(total/100).toFixed(2).replace(".",",")} €</p>
+            <button class="cart-section__cancelCart">Annuler le panier</button>
         `);
 
 
@@ -80,12 +81,24 @@ function displayCart() {
             </form>
         `);
 
-        let deleteBtn = document.querySelectorAll(`.cart-section__delete`);
+        const deleteBtn = document.querySelectorAll(".cart-section__delete");
         deleteBtn.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', e => {
                 deleteProduct(e, products, section);
             });
         });
+
+        const cancelCartBtn = document.querySelector(".cart-section__cancelCart");
+        cancelCartBtn.addEventListener('click', () => {
+            cancelCart(section);
+        });
+
+        const form = document.querySelector(".cart-form");
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitForm();
+        });
+
 
     } else {
         section.insertAdjacentHTML("afterbegin", `
@@ -97,6 +110,8 @@ function displayCart() {
         `)
     }
 }
+
+displayCart();
 
 function deleteProduct(e, products, section) {
     let index = e.target.classList[1].slice(-1);
@@ -110,14 +125,14 @@ function deleteProduct(e, products, section) {
     refreshCart(products);
 }
 
-displayCart();
+function cancelCart(section) {
+    localStorage.removeItem('cartProducts');
+    section.innerHTML = "";
+    displayCart();
+    refreshCart();
+}
 
-const validateBtn = document.getElementById("submit-btn");
-const form = document.querySelector(".cart-form");
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log("submit !");
+function submitForm() {
 
     let contact = {
         firstName: document.getElementById("firstname").value,
@@ -141,11 +156,11 @@ form.addEventListener('submit', (e) => {
         products
     })
 
-    postTest(contactProducts);
+    postOrder(contactProducts);
 
-});
+};
 
-function postTest(contactProducts){
+function postOrder(contactProducts){
 
     fetch("http://localhost:3000/api/teddies/order", {
         method: 'POST',
@@ -157,8 +172,6 @@ function postTest(contactProducts){
     }).then(response => {
         return response.json();
     }).then( r => {
-        console.log(r.contact);
-        console.log(r.orderId);
         localStorage.setItem('contact', JSON.stringify(r.contact));
         localStorage.setItem('orderId', JSON.stringify(r.orderId));
         localStorage.setItem('total', JSON.stringify(total));

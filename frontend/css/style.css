@@ -288,6 +288,18 @@ footer p {
 .cart-section__delete:hover {
   cursor: pointer;
 }
+.cart-section__cancelCart {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #8D6E63;
+  margin-bottom: 1rem;
+  color: #eee;
+  box-shadow: 1px 1px 1px black;
+}
+.cart-section__cancelCart:hover {
+  cursor: pointer;
+}
 .cart-section__table {
   margin: 0 auto;
   width: 90%;
@@ -359,7 +371,6 @@ footer p {
   }
   .confirmation-section ul {
     text-align: center;
-    color: red;
   }
 }
 .confirmation-section h2 {

@@ -16,7 +16,6 @@ async function getProducts(url) {
 }
 
 getProducts(url).then (products => {
-    console.log("OK");
     displayProduct(products);
 }).catch(e => {
     console.log(e);

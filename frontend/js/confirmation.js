@@ -1,12 +1,10 @@
-let confirmation = document.querySelector(".confirmation-section");
-
-let contact = JSON.parse(localStorage.getItem("contact"));
-let orderId = JSON.parse(localStorage.getItem("orderId"));
-let total = JSON.parse(localStorage.getItem('total'));
+const confirmation = document.querySelector(".confirmation-section");
+const contact = JSON.parse(localStorage.getItem("contact"));
+const orderId = JSON.parse(localStorage.getItem("orderId"));
+const total = JSON.parse(localStorage.getItem('total'));
 
 confirmation.insertAdjacentHTML("beforeend",`
     <h2>Confirmation de la commande : </h2>
-    
     <ul>
         <li class="confirmation-section__coord">Vos coordonnées : </li>
         <li>Nom : ${contact.lastName}</li>

@@ -345,4 +345,37 @@ footer p {
   cursor: pointer;
 }
 
+.confirmation-section {
+  text-align: center;
+  width: 90vw;
+  background-color: #ddd;
+  padding: 1rem;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .confirmation-section {
+    max-width: 750px;
+  }
+  .confirmation-section ul {
+    text-align: center;
+    color: red;
+  }
+}
+.confirmation-section h2 {
+  font-family: "Permanent Marker", cursive;
+  color: #444;
+  font-size: 1.5rem;
+}
+.confirmation-section__coord {
+  font-weight: bold;
+}
+.confirmation-section ul {
+  list-style: none;
+  margin: 1rem auto 1rem auto;
+}
+.confirmation-section h3 {
+  margin: 1rem auto 1rem auto;
+}
+
 /*# sourceMappingURL=style.css.map */

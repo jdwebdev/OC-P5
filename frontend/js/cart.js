@@ -1,10 +1,12 @@
+let total = 0;
+
 function displayCart() {
 
     let section = document.querySelector(".cart-section");
 
     if (localStorage.getItem('cartProducts') !== null) {
         let products = JSON.parse(localStorage.getItem('cartProducts'));
-        let total = 0;
+        // let total = 0;
         let index = 0;
 
         section.insertAdjacentHTML("afterbegin", `
@@ -113,13 +115,6 @@ displayCart();
 const validateBtn = document.getElementById("submit-btn");
 const form = document.querySelector(".cart-form");
 
-// validateBtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log(`${form}`);
-//     // form.submit();
-//     console.log("click");
-// });
-
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     console.log("submit !");
@@ -166,6 +161,9 @@ function postTest(contactProducts){
         console.log(r.orderId);
         localStorage.setItem('contact', JSON.stringify(r.contact));
         localStorage.setItem('orderId', JSON.stringify(r.orderId));
+        localStorage.setItem('total', JSON.stringify(total));
+        localStorage.removeItem('cartProducts');
+        window.location.replace("./confirmation.html");
     }).catch((e) => {
         alert('fetch POST error : ' + e);
     })

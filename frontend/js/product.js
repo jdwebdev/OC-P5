@@ -50,7 +50,6 @@ function displayProduct(products) {
 
                 let select = document.querySelector(".productDetail__select");
                 product.selectedColor = select.options[select.selectedIndex].value;
-                console.log(`selected color: ${product.selectedColor}`);
 
                 addToCart(product);
             })

@@ -40,6 +40,9 @@
         border-radius: 1rem;
         border: none;
         margin-left: 20px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     &__table {
@@ -102,5 +105,8 @@
         border: none;
         border-radius: 1rem;
         box-shadow: 1px 1px 1px black;
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

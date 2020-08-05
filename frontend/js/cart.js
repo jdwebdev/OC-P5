@@ -53,28 +53,28 @@ function displayCart() {
 
         section.insertAdjacentHTML("beforeend", `
             <p class="">Veuillez remplir le formulaire suivant afin de valider la commande : </p>
-            <form class="cart-form" action="">
+            <form class="cart-form" action="post" type="submit">
                 <div class="cart-form__group">
                     <label for="firstname">Prénom : </label>
-                    <input id="firstname" type="text" placeholder="Votre prénom" required />
+                    <input id="firstname" type="text" placeholder="Votre prénom" maxlength="30" pattern="[A-Za-z]{2,}" required />
                 </div>
                 <div class="cart-form__group">
                     <label for="name">Nom : </label>
-                    <input id="name" type="text" placeholder="Votre nom" required />
+                    <input id="name" type="text" placeholder="Votre nom" maxlength="50" pattern="[A-Za-z]{2,}" required />
                 </div>
                 <div class="cart-form__group">
                     <label for="address">Adresse  : </label>
-                    <input id="address" type="text" placeholder="Votre adresse" required />
+                    <input id="address" type="text" placeholder="Votre adresse" maxlength="200" required />
                 </div>
                 <div class="cart-form__group">
-                    <label for="town">Ville : </label>
-                    <input id="town" type="text" placeholder="Votre ville" required />
+                    <label for="city">Ville : </label>
+                    <input id="city" type="text" placeholder="Votre ville" maxlength="30" required />
                 </div>
                 <div class="cart-form__group">
                     <label for="email">Email : </label>
-                    <input id="email" type="email" placeholder="exemple@email.com" required />
+                    <input id="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" placeholder="exemple@email.com" maxlength="30" required />
                 </div>
-                <button type="submit">Valider le panier</button>
+                <button id="submit-btn">Valider le panier</button>
             </form>
         `);
 
@@ -109,3 +109,65 @@ function deleteProduct(e, products, section) {
 }
 
 displayCart();
+
+const validateBtn = document.getElementById("submit-btn");
+const form = document.querySelector(".cart-form");
+
+// validateBtn.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     console.log(`${form}`);
+//     // form.submit();
+//     console.log("click");
+// });
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log("submit !");
+
+    let contact = {
+        firstName: document.getElementById("firstname").value,
+        lastName: document.getElementById("name").value,
+        address: document.getElementById("address").value,
+        city: document.getElementById("city").value,
+        email: document.getElementById("email").value
+    };
+
+    let products = [];
+    if (localStorage.getItem('cartProducts') !== null) {
+        let productObj = JSON.parse(localStorage.getItem('cartProducts'));
+        
+        productObj.forEach( p => {
+            products.push(p._id);
+        })
+    }
+
+    let contactProducts = JSON.stringify({
+        contact, 
+        products
+    })
+
+    postTest(contactProducts);
+
+});
+
+function postTest(contactProducts){
+
+    fetch("http://localhost:3000/api/teddies/order", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        mode:'cors',
+        body: contactProducts
+    }).then(response => {
+        return response.json();
+    }).then( r => {
+        console.log(r.contact);
+        console.log(r.orderId);
+        localStorage.setItem('contact', JSON.stringify(r.contact));
+        localStorage.setItem('orderId', JSON.stringify(r.orderId));
+    }).catch((e) => {
+        alert('fetch POST error : ' + e);
+    })
+
+}

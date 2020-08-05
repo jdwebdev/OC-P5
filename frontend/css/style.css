@@ -285,6 +285,9 @@ footer p {
   border: none;
   margin-left: 20px;
 }
+.cart-section__delete:hover {
+  cursor: pointer;
+}
 .cart-section__table {
   margin: 0 auto;
   width: 90%;
@@ -337,6 +340,9 @@ footer p {
   border: none;
   border-radius: 1rem;
   box-shadow: 1px 1px 1px black;
+}
+.cart-form button:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

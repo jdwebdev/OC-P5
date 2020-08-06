@@ -76,7 +76,7 @@ function displayCart() {
                 </div>
                 <div class="cart-form__group">
                     <label for="email">Email : </label>
-                    <input id="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" placeholder="exemple@email.com" maxlength="30" required />
+                    <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" placeholder="exemple@email.com" maxlength="30" required />
                 </div>
                 <button id="submit-btn">Valider le panier</button>
             </form>
@@ -118,7 +118,7 @@ displayCart();
 /* 
     Permet de supprimer le produit sélectionné. 
     On récupère l'index correspondant grâce au dernier caractère du nom de la classe.
-    On se sert ensuite de cet index pour supprimer le bon produit dans le tableau products du localStoragef
+    On se sert ensuite de cet index pour supprimer le bon produit dans le tableau products du localStorage
  */
 function deleteProduct(e, products, section) {
     let index = e.target.classList[1].slice(-1);

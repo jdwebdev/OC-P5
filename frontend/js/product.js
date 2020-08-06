@@ -1,15 +1,15 @@
-const url = "http://localhost:3000/api/teddies"
-
 /* Récupération de l'id du produit sélectionné dans la page précédente */
 const productId = window.location.search.substr(1); 
 
-/* Récupération des produits depuis le serveur */ 
-async function getProducts(url) {
+const url = `http://localhost:3000/api/teddies/${productId}`;
+
+/* Récupération du produit avec l'id associé depuis le serveur */ 
+async function getOneProduct(url) {
     try {
         let response = await fetch(url);
         if (response.ok) {
-            let products = await response.json();
-            return products;
+            let product = await response.json();
+            return product;
         } else {
             console.log("erreur");
         }
@@ -18,57 +18,48 @@ async function getProducts(url) {
     }
 }
 
-getProducts(url).then (products => {
-    displayProduct(products);
+getOneProduct(url).then (product => {
+    displayProduct(product);
 }).catch(e => {
     console.log(e);
 })
 
-
 /* 
     Fonction d'affichage du produit
-    Boucle forEach permettant de comparer l'id reçu à l'id du produit correspondant dans le tableau 
-    afin d'afficher le bon produit.
-    
 */
-function displayProduct(products) {
+function displayProduct(product) {
 
     const productDetail = document.querySelector(".productDetail");
 
-    products.forEach ( product => {
-        if (product._id === productId) {
+    productDetail.insertAdjacentHTML("afterbegin", `
+        <h2>${product.name}</h2>
+        <img src="${product.imageUrl}" alt="Photo Teddy">
+        <p>${product.description}</p>
+        <div>${(product.price/100).toFixed(2).replace(".",",")}€</div>
+        <label for="color-select">Choisir une couleur</label>
+        <select class="productDetail__select" name="colors" id="color-select"></select>
+        <button class="addToCart">Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
+        `
+    );
 
-            productDetail.insertAdjacentHTML("afterbegin", `
-                <h2>${product.name}</h2>
-                <img src="${product.imageUrl}" alt="Photo Teddy">
-                <p>${product.description}</p>
-                <div>${(product.price/100).toFixed(2).replace(".",",")}€</div>
-                <label for="color-select">Choisir une couleur</label>
-                <select class="productDetail__select" name="colors" id="color-select"></select>
-                <button class="addToCart">Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
-                `
-            );
+    let addToCartBtn = document.querySelector(".addToCart");
 
-            let addToCartBtn = document.querySelector(".addToCart");
+    /* Évènement "click" : lance la fonction d'ajout du produit au panier */
+    addToCartBtn.addEventListener('click', () => {
 
-            /* évènement "click" : lance la fonction d'ajout du produit au panier */
-            addToCartBtn.addEventListener('click', () => {
+        let select = document.querySelector(".productDetail__select");
+        product.selectedColor = select.options[select.selectedIndex].value;
 
-                let select = document.querySelector(".productDetail__select");
-                product.selectedColor = select.options[select.selectedIndex].value;
+        addToCart(product);
+    })
 
-                addToCart(product);
-            })
-
-            let select = document.querySelector(".productDetail__select");
-            let colors = product.colors;
-            colors.forEach (function (color) {
-                let option = document.createElement("option");
-                option.value = color;
-                option.textContent = color;
-                select.appendChild(option);
-            })
-        }
+    let select = document.querySelector(".productDetail__select");
+    let colors = product.colors;
+    colors.forEach (function (color) {
+        let option = document.createElement("option");
+        option.value = color;
+        option.textContent = color;
+        select.appendChild(option);
     })
 }
 

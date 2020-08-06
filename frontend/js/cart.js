@@ -1,5 +1,7 @@
 let total = 0;
 
+/* Affichage du contenu du panier, des boutons de suppression et d'annulation du panier ainsi que du formulaire de contact */
+
 function displayCart() {
 
     const section = document.querySelector(".cart-section");
@@ -29,14 +31,14 @@ function displayCart() {
 
         products.forEach( (product) => {
             
-            let convertedPrice = (product.price / 100).toFixed(2).replace(".",",");
             total = total + product.price;
-            
+
+            /* La classe product-index nous permet de garder la valeur de l'index du produit. Il sera récupéré dans la fonction deleteProduct */
             tbody.insertAdjacentHTML("beforeend", `
                 <tr>
                     <td>${product.name}</td>
                     <td>${product.selectedColor}</td>
-                    <td>${convertedPrice} €</td>
+                    <td>${(product.price/100).toFixed(2).replace(".",",")} €</td>
                     <td><button class="cart-section__delete product-${index}">X</button></td>
                 </tr>
             `);
@@ -52,7 +54,6 @@ function displayCart() {
             <p class="cart-section__total">Total : ${(total/100).toFixed(2).replace(".",",")} €</p>
             <button class="cart-section__cancelCart">Annuler le panier</button>
         `);
-
 
         section.insertAdjacentHTML("beforeend", `
             <p class="">Veuillez remplir le formulaire suivant afin de valider la commande : </p>
@@ -75,12 +76,12 @@ function displayCart() {
                 </div>
                 <div class="cart-form__group">
                     <label for="email">Email : </label>
-                    <input id="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}" placeholder="exemple@email.com" maxlength="30" required />
+                    <input id="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,4}" placeholder="exemple@email.com" maxlength="30" required />
                 </div>
                 <button id="submit-btn">Valider le panier</button>
             </form>
         `);
-
+        
         const deleteBtn = document.querySelectorAll(".cart-section__delete");
         deleteBtn.forEach((btn) => {
             btn.addEventListener('click', e => {
@@ -103,7 +104,8 @@ function displayCart() {
     } else {
         section.insertAdjacentHTML("afterbegin", `
             <h2>Panier</h2>
-            <p class="cart-section__empty">Votre panier est vide ! 
+            <p class="cart-section__empty">
+                Votre panier est vide ! 
                 <br/>
                 <a href="./index.html">Revenir à la page d'accueil</a>
             </p>
@@ -113,6 +115,11 @@ function displayCart() {
 
 displayCart();
 
+/* 
+    Permet de supprimer le produit sélectionné. 
+    On récupère l'index correspondant grâce au dernier caractère du nom de la classe.
+    On se sert ensuite de cet index pour supprimer le bon produit dans le tableau products du localStoragef
+ */
 function deleteProduct(e, products, section) {
     let index = e.target.classList[1].slice(-1);
     products.splice(index, 1);
@@ -125,6 +132,7 @@ function deleteProduct(e, products, section) {
     refreshCart(products);
 }
 
+/* Annulation de tout le panier */
 function cancelCart(section) {
     localStorage.removeItem('cartProducts');
     section.innerHTML = "";
@@ -132,6 +140,11 @@ function cancelCart(section) {
     refreshCart();
 }
 
+/* 
+    Récupération des valeurs de l'input dans l'objet contact
+    Récupération des id des produits du panier dans le tableau products
+    L'objet contact et le tableau products sont formattés en string avant d'être envoyé dans la fonction postOrder
+*/
 function submitForm() {
 
     let contact = {
@@ -157,9 +170,14 @@ function submitForm() {
     })
 
     postOrder(contactProducts);
-
 };
 
+/* 
+    Requête POST
+    Envoi au server l'objet contact et le tableau d'id products au format string
+    Enregistrement de l'objet contact et l'orderId reçus du serveur, ainsi que le total de la commande sur le localStorage.
+    Changement de page -> confirmation.html
+ */
 function postOrder(contactProducts){
 
     fetch("http://localhost:3000/api/teddies/order", {

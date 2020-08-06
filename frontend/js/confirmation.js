@@ -1,3 +1,5 @@
+/* Récupération des différents éléments dans le localStorage afin de les afficher au chargement de la page */
+
 const confirmation = document.querySelector(".confirmation-section");
 const contact = JSON.parse(localStorage.getItem("contact"));
 const orderId = JSON.parse(localStorage.getItem("orderId"));
@@ -17,3 +19,5 @@ confirmation.insertAdjacentHTML("beforeend",`
     <h3>Numéro de la commande : </br> ${orderId}</h3>
     <p>Ce numéro fait office de <strong>preuve d'achat</strong>. Veuillez-le conserver précieusement.</p>
 `);
+
+localStorage.clear();

@@ -21,4 +21,13 @@ function refreshCart(cp) {
     }
 }
 
+/* Affichage d'un message d'erreur si la connexion n'a pas pu se faire correctement avec le serveur */
+function displayError() {
+    const section = document.querySelector(".section");
+    section.innerHTML = "";
+    section.insertAdjacentHTML("beforeend", `
+        <p class="section__error">Suite à un problème technique nous ne pouvons afficher correctement la page. </br> Veuillez rééssayer plus tard.</p>
+    `);
+}
+
 checkCart();

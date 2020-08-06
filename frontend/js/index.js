@@ -18,6 +18,8 @@ async function getProducts(url) {
 getProducts(url).then( products => {
     displayAllProducts(products);
 }).catch( e => {
+    console.log("catch du thencatch");
+    displayError();
     console.log(e);
 })
 

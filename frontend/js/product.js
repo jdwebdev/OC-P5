@@ -21,6 +21,7 @@ async function getOneProduct(url) {
 getOneProduct(url).then (product => {
     displayProduct(product);
 }).catch(e => {
+    displayError();
     console.log(e);
 })
 
@@ -29,15 +30,15 @@ getOneProduct(url).then (product => {
 */
 function displayProduct(product) {
 
-    const productDetail = document.querySelector(".productDetail");
+    const productSection = document.querySelector(".product-section");
 
-    productDetail.insertAdjacentHTML("afterbegin", `
+    productSection.insertAdjacentHTML("afterbegin", `
         <h2>${product.name}</h2>
         <img src="${product.imageUrl}" alt="Photo Teddy">
         <p>${product.description}</p>
         <div>${(product.price/100).toFixed(2).replace(".",",")}€</div>
         <label for="color-select">Choisir une couleur</label>
-        <select class="productDetail__select" name="colors" id="color-select"></select>
+        <select class="product-section__select" name="colors" id="color-select"></select>
         <button class="addToCart">Ajouter au panier <i class="fas fa-shopping-cart"></i></button> 
         `
     );
@@ -47,13 +48,13 @@ function displayProduct(product) {
     /* Évènement "click" : lance la fonction d'ajout du produit au panier */
     addToCartBtn.addEventListener('click', () => {
 
-        let select = document.querySelector(".productDetail__select");
+        let select = document.querySelector(".product-section__select");
         product.selectedColor = select.options[select.selectedIndex].value;
 
         addToCart(product);
     })
 
-    let select = document.querySelector(".productDetail__select");
+    let select = document.querySelector(".product-section__select");
     let colors = product.colors;
     colors.forEach (function (color) {
         let option = document.createElement("option");

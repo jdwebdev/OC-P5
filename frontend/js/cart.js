@@ -177,10 +177,10 @@ function submitForm() {
     Envoi au server l'objet contact et le tableau d'id products au format string
     Enregistrement de l'objet contact et l'orderId reçus du serveur, ainsi que le total de la commande sur le localStorage.
     Changement de page -> confirmation.html
- */
+*/
 function postOrder(contactProducts){
 
-    fetch("http://localhost:3000/api/teddies/order", {
+    fetch("http://localhost:3000/api/teddies/ordeer", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -196,7 +196,8 @@ function postOrder(contactProducts){
         localStorage.removeItem('cartProducts');
         window.location.replace("./confirmation.html");
     }).catch((e) => {
-        alert('fetch POST error : ' + e);
+        displayError();
+        // alert('fetch POST error : ' + e);
     })
 
 }

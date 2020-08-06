@@ -14,3 +14,40 @@
         @content;
     }
 }
+
+/* Animations */
+@mixin hoverAnim() {
+
+    animation: hover 0.3s;
+
+    @keyframes hover {
+        0% {
+            opacity: 1;
+            box-shadow: 3px 3px 1px black;
+        }
+        25% {
+            box-shadow: 0px 3px 1px black;
+        }
+        50% {
+            opacity: 0.8;
+            box-shadow: -3px 0px 1px black;
+        }
+        75% {
+            box-shadow: 0px -3px 1px black;
+        }
+    }
+}
+
+@mixin onclickAnim() {
+
+    animation: click 0.3s infinite;
+
+    @keyframes click {
+        0% {
+            opacity:1;
+        }
+        50% {
+            opacity: 0.5;
+        }
+    }
+}

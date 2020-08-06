@@ -1,11 +1,12 @@
 .productDetail {
     width: 90vw;
+    background-color: $section-bg-color;
+    text-align: center;
+    color: $secondary-font-color;
+
+    font-family: $secondary-font;
     margin: 1rem auto 1rem auto;
     padding: 1rem;
-    background-color: #ddd;
-    text-align: center;
-    font-family: $price-font;
-    color: #444;
     border-radius: 1rem;
     box-shadow: 1px 1px 15px gray;
 
@@ -25,9 +26,6 @@
         width: 100%;
         max-width: 600px;
         margin: 1rem auto;
-
-        @include smallScreen {
-        }
     }
     p {
         margin: 0 auto;
@@ -79,6 +77,9 @@
 
         &:hover {
             cursor: pointer;
+        }
+        &:active {
+            @include onclickAnim;
         }
     }
 }

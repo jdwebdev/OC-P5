@@ -1,11 +1,12 @@
 .cart-section {
     width: 90vw;
-    background-color: #ddd;
+    background-color: $section-bg-color;
+    text-align: center;
+    color: $secondary-font-color;
     padding: 0.5rem;
     margin: 0 auto;
-    text-align: center;
     font-size:0.8rem;
-    color: #444;
+    
 
     @include middleScreen() {
         max-width: 750px;
@@ -75,7 +76,7 @@
     &__total {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        font-family: $price-font;
+        font-family: $secondary-font;
         font-size: 1rem;
     }
 

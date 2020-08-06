@@ -20,4 +20,6 @@ confirmation.insertAdjacentHTML("beforeend",`
     <p>Ce numéro fait office de <strong>preuve d'achat</strong>. Veuillez-le conserver précieusement.</p>
 `);
 
-localStorage.clear();
+localStorage.removeItem('contact');
+localStorage.removeItem('total');
+localStorage.removeItem('orderId');

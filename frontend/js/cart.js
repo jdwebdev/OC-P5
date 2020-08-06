@@ -180,7 +180,7 @@ function submitForm() {
 */
 function postOrder(contactProducts){
 
-    fetch("http://localhost:3000/api/teddies/ordeer", {
+    fetch("http://localhost:3000/api/teddies/order", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

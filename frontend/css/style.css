@@ -366,6 +366,11 @@ footer p {
 .cart-section__table th, .cart-section__table td {
   padding: 2px;
 }
+@media screen and (min-width: 768px) {
+  .cart-section__table th:nth-child(4), .cart-section__table td:nth-child(4) {
+    width: 137px;
+  }
+}
 .cart-section__table th:nth-child(5) {
   width: 30px;
 }

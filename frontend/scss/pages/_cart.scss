@@ -94,6 +94,13 @@
         th, td {
             padding: 2px;
         }
+        @include middleScreen() {
+            th:nth-child(4), td:nth-child(4) {
+                width: 137px;
+            }
+        }
+        
+
         th:nth-child(5){
             width: 30px;
         }

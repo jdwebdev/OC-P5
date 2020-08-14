@@ -75,7 +75,6 @@ function addToCart (product) {
     if (localStorage.getItem('cartProducts') === null) {
 
         cartProducts.push(saveToCartProduct);
-        // cartProducts.push(product);
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
     }
     else {
@@ -83,7 +82,6 @@ function addToCart (product) {
 
         cartProducts.forEach((prod) => {
             if (product._id === prod._id && product.selectedColor === prod.selectedColor) {
-                // console.log(`${product.name} = ${prod.name}`);
                 prod.quantity++;
                 newDifferentProduct = false;
             }

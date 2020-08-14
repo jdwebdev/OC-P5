@@ -1,3 +1,5 @@
+
+const section = document.querySelector(".cart-section");
 let total = 0;
 
 displayCart();
@@ -5,8 +7,6 @@ displayCart();
 /* Affichage du contenu du panier, des boutons de suppression et d'annulation du panier ainsi que du formulaire de contact */
 
 function displayCart() {
-
-    const section = document.querySelector(".cart-section");
 
     if (localStorage.getItem('cartProducts') !== null) {
         let products = JSON.parse(localStorage.getItem('cartProducts'));
@@ -82,27 +82,27 @@ function displayCart() {
         const removeOneBtn = document.querySelectorAll(".cart-section__remove");
         removeOneBtn.forEach((btn) => {
             btn.addEventListener('click', e => {
-                removeOneProduct(e, products, section);
+                removeOneProduct(e, products);
             })
         })
 
         const addOneBtn = document.querySelectorAll(".cart-section__add");
         addOneBtn.forEach((btn) => {
             btn.addEventListener('click', e => {
-                addOneProduct(e, products, section);
+                addOneProduct(e, products);
             })
         })
         
         const deleteBtn = document.querySelectorAll(".cart-section__delete");
         deleteBtn.forEach((btn) => {
             btn.addEventListener('click', e => {
-                deleteProduct(e, products, section);
+                deleteProduct(e, products);
             });
         });
 
         const cancelCartBtn = document.querySelector(".cart-section__cancelCart");
         cancelCartBtn.addEventListener('click', () => {
-            cancelCart(section);
+            cancelCart();
         });
 
         const form = document.querySelector(".cart-form");
@@ -110,7 +110,6 @@ function displayCart() {
             e.preventDefault();
             submitForm();
         });
-
 
     } else {
         section.insertAdjacentHTML("afterbegin", `
@@ -124,8 +123,8 @@ function displayCart() {
     }
 }
 
-// Diminue de 1 la quantité d'un même produit. S'il passe à 0 alors le produit est supprimé du panier
-function removeOneProduct(e, products, section) {
+/* Diminue de 1 la quantité d'un même produit. S'il passe à 0 alors le produit est supprimé du panier */
+function removeOneProduct(e, products) {
     let index = e.target.classList[1].slice(-1);
     products[index].quantity--;
     
@@ -139,19 +138,15 @@ function removeOneProduct(e, products, section) {
     } else {
         localStorage.setItem('cartProducts', JSON.stringify(products));
     }
-    section.innerHTML = "";
-    displayCart();
-    checkCart();
+    refreshSectionAndCart();
 }
 
-// Augmente de 1 la quantité d'un même produit.
-function addOneProduct(e, products, section) {
+/* Augmente de 1 la quantité d'un même produit. */
+function addOneProduct(e, products) {
     let index = e.target.classList[1].slice(-1);
     products[index].quantity++;
     localStorage.setItem('cartProducts', JSON.stringify(products));
-    section.innerHTML = "";
-    displayCart();
-    checkCart();
+    refreshSectionAndCart();
 }
 
 /* 
@@ -159,21 +154,24 @@ function addOneProduct(e, products, section) {
     On récupère l'index correspondant grâce au dernier caractère du nom de la classe.
     On se sert ensuite de cet index pour supprimer le bon produit dans le tableau products du localStorage
  */
-function deleteProduct(e, products, section) {
+function deleteProduct(e, products) {
     let index = e.target.classList[1].slice(-1);
     products.splice(index, 1);
     localStorage.setItem('cartProducts', JSON.stringify(products));
     if (products.length === 0) {
         localStorage.removeItem('cartProducts');
     }
-    section.innerHTML = "";
-    displayCart();
-    checkCart();
+    refreshSectionAndCart();
 }
 
 /* Annulation de tout le panier */
-function cancelCart(section) {
+function cancelCart() {
     localStorage.removeItem('cartProducts');
+    refreshSectionAndCart();
+}
+
+/* Réinitialise la section "cart-section" ainsi que le nombre de produits du panier (header) */
+function refreshSectionAndCart() {
     section.innerHTML = "";
     displayCart();
     checkCart();
@@ -238,5 +236,4 @@ function postOrder(contactProducts){
         displayError();
         console.log(e);
     })
-
 }

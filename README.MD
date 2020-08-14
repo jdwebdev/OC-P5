@@ -1,3 +1,3 @@
 # Openclassrooms Projet 5
 
-Orinoco - Site de e-commerce
+Frontend du projet 5 : Orinoco - Site de e-commerce 

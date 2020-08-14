@@ -4,26 +4,16 @@ const productId = window.location.search.substr(1);
 const url = `http://localhost:3000/api/teddies/${productId}`;
 
 /* Récupération du produit avec l'id associé depuis le serveur */ 
-async function getOneProduct(url) {
-    try {
-        let response = await fetch(url);
-        if (response.ok) {
-            let product = await response.json();
-            return product;
-        } else {
-            console.log("erreur");
-        }
-    } catch (e) {
-        console.log(e);
-    }
-}
 
-getOneProduct(url).then (product => {
-    displayProduct(product);
-}).catch(e => {
-    displayError();
-    console.log(e);
-})
+fetch(url)
+    .then((response) => response.json())
+    .then(product => {
+        displayProduct(product);
+    })
+    .catch(e => {
+        displayError();
+        console.log(e);
+    });
 
 /* 
     Fonction d'affichage du produit
@@ -70,17 +60,18 @@ function displayProduct(product) {
     Sinon elle récupère le tableau du localStorage, ajoute le nouveau produit, et enregistre le nouveau tableau
 */
 function addToCart (product) {
+    // let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+    let cartProducts = []
 
     if (localStorage.getItem('cartProducts') === null) {
-        let cartProducts = [];
         cartProducts.push(product);
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
         checkCart();
     }
     else {
-        let cp = JSON.parse(localStorage.getItem('cartProducts'));
-        cp.push(product);
-        localStorage.setItem('cartProducts', JSON.stringify(cp));
-        refreshCart(cp);
+        cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
+        cartProducts.push(product);
+        localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+        refreshCart(cartProducts);
     }
 }

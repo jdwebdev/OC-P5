@@ -197,7 +197,7 @@ function postOrder(contactProducts){
         window.location.replace("./confirmation.html");
     }).catch((e) => {
         displayError();
-        // alert('fetch POST error : ' + e);
+        console.log(e);
     })
 
 }

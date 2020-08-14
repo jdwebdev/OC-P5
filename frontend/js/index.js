@@ -1,27 +1,14 @@
 const url = "http://localhost:3000/api/teddies"
 
 /* Permet de récupérer les produits depuis le serveur sous la forme d'un tableau d'objets */ 
-async function getProducts(url) {
-    try {
-        let response = await fetch(url);
-        if (response.ok) {
-            let products = await response.json();
-            return products;
-        } else {
-            console.log("erreur");
-        }
-    } catch (e) {
-        console.log(e);
-    }
-}
 
-getProducts(url).then( products => {
-    displayAllProducts(products);
-}).catch( e => {
-    console.log("catch du thencatch");
-    displayError();
-    console.log(e);
-})
+fetch(url)
+    .then((response) => response.json())
+    .then(products => {
+        console.log(products)
+        displayAllProducts(products);
+    })
+    .catch(e => displayError());
 
 /* 
     Affichage de tous les produits sous forme de liste 

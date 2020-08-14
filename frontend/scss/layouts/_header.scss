@@ -31,6 +31,10 @@ header {
 }
 
 .cart {
+
+    &:hover {
+        opacity: 0.5;
+    }
     
     &__nb {
         display: inline-block;

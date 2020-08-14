@@ -4,6 +4,7 @@
 /* Media queries */
 /* Media queries */
 /* Animations */
+/* Divers */
 * {
   margin: 0;
   padding: 0;
@@ -62,6 +63,9 @@ header {
   color: #eee;
 }
 
+.cart:hover {
+  opacity: 0.5;
+}
 .cart__nb {
   display: inline-block;
   border-radius: 1rem;
@@ -263,6 +267,7 @@ footer p {
 }
 .product-section button:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 .product-section button:active {
   animation: click 0.3s infinite;
@@ -319,9 +324,9 @@ footer p {
   border-radius: 1rem;
   border: none;
   box-shadow: 1px 1px 2px gray;
-  cursor: pointer;
 }
 .cart-section__remove:hover, .cart-section__add:hover {
+  cursor: pointer;
   opacity: 0.5;
 }
 .cart-section__remove {
@@ -357,6 +362,7 @@ footer p {
 }
 .cart-section__cancelCart:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 .cart-section__table {
   margin: 0 auto;
@@ -418,6 +424,7 @@ footer p {
 }
 .cart-form button:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .confirmation-section {

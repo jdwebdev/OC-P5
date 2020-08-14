@@ -51,3 +51,9 @@
         }
     }
 }
+
+/* Divers */
+@mixin buttonEffect() {
+    cursor: pointer;
+    opacity: 0.5;
+}

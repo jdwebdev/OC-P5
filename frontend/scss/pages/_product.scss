@@ -76,7 +76,7 @@
         box-shadow: 3px 3px 1px black;
 
         &:hover {
-            cursor: pointer;
+            @include buttonEffect;
         }
         &:active {
             @include onclickAnim;

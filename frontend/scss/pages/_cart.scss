@@ -42,10 +42,9 @@
         border-radius: 1rem;
         border: none;
         box-shadow: 1px 1px 2px gray;
-        cursor: pointer;
-
+        
         &:hover {
-            opacity: 0.5;
+            @include buttonEffect;
         }
     }
     &__remove {
@@ -67,8 +66,7 @@
         box-shadow: 1px 1px 2px gray;
 
         &:hover {
-            cursor: pointer;
-            opacity: 0.5;
+            @include buttonEffect;
         }
     }
 
@@ -82,7 +80,7 @@
         box-shadow: 1px 1px 1px black;
 
         &:hover {
-            cursor: pointer;
+            @include buttonEffect;
         }
     }
 
@@ -154,7 +152,7 @@
         border-radius: 1rem;
         box-shadow: 1px 1px 1px black;
         &:hover {
-            cursor: pointer;
+            @include buttonEffect;
         }
     }
 }

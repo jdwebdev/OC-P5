@@ -1,5 +1,7 @@
 let total = 0;
 
+displayCart();
+
 /* Affichage du contenu du panier, des boutons de suppression et d'annulation du panier ainsi que du formulaire de contact */
 
 function displayCart() {
@@ -8,8 +10,7 @@ function displayCart() {
 
     if (localStorage.getItem('cartProducts') !== null) {
         let products = JSON.parse(localStorage.getItem('cartProducts'));
-        total = 0;
-        let index = 0;
+        total = 0; // Réinitialisation du total à 0
 
         section.insertAdjacentHTML("afterbegin", `
             <h2>Panier</h2>
@@ -18,6 +19,7 @@ function displayCart() {
                     <tr>
                         <th>Nom</th>
                         <th>Couleur</th>
+                        <th>Quantité</th>
                         <th>Prix</th>
                         <th>Supprimer</th>
                     </tr>
@@ -29,25 +31,20 @@ function displayCart() {
 
         let tbody = document.querySelector(".cart-section__tbody");
 
-        products.forEach( (product) => {
+        products.forEach( (product, index) => {
             
-            total = total + product.price;
+            total = total + (product.price * product.quantity);
 
             /* La classe product-index nous permet de garder la valeur de l'index du produit. Il sera récupéré dans la fonction deleteProduct */
             tbody.insertAdjacentHTML("beforeend", `
                 <tr>
                     <td>${product.name}</td>
                     <td>${product.selectedColor}</td>
-                    <td>${(product.price/100).toFixed(2).replace(".",",")} €</td>
+                    <td><button class="cart-section__remove product-${index}">-</button>${product.quantity}<button class="cart-section__add product-${index}">+</button></td>
+                    <td>${(product.price * product.quantity/100).toFixed(2).replace(".",",")} €</td>
                     <td><button class="cart-section__delete product-${index}">X</button></td>
                 </tr>
             `);
-
-            if (index >= products.length -1) {
-                index=0;
-            } else {
-                index++;
-            }
         })
 
         section.insertAdjacentHTML("beforeend", `
@@ -81,6 +78,20 @@ function displayCart() {
                 <button id="submit-btn">Valider le panier</button>
             </form>
         `);
+
+        const removeOneBtn = document.querySelectorAll(".cart-section__remove");
+        removeOneBtn.forEach((btn) => {
+            btn.addEventListener('click', e => {
+                removeOneProduct(e, products, section);
+            })
+        })
+
+        const addOneBtn = document.querySelectorAll(".cart-section__add");
+        addOneBtn.forEach((btn) => {
+            btn.addEventListener('click', e => {
+                addOneProduct(e, products, section);
+            })
+        })
         
         const deleteBtn = document.querySelectorAll(".cart-section__delete");
         deleteBtn.forEach((btn) => {
@@ -113,7 +124,35 @@ function displayCart() {
     }
 }
 
-displayCart();
+// Diminue de 1 la quantité d'un même produit. S'il passe à 0 alors le produit est supprimé du panier
+function removeOneProduct(e, products, section) {
+    let index = e.target.classList[1].slice(-1);
+    products[index].quantity--;
+    
+    if (products[index].quantity <= 0) {
+        products.splice(index, 1);       
+        if (products.length === 0 ) {
+            localStorage.removeItem('cartProducts');
+        } else {
+            localStorage.setItem('cartProducts', JSON.stringify(products));
+        }
+    } else {
+        localStorage.setItem('cartProducts', JSON.stringify(products));
+    }
+    section.innerHTML = "";
+    displayCart();
+    checkCart();
+}
+
+// Augmente de 1 la quantité d'un même produit.
+function addOneProduct(e, products, section) {
+    let index = e.target.classList[1].slice(-1);
+    products[index].quantity++;
+    localStorage.setItem('cartProducts', JSON.stringify(products));
+    section.innerHTML = "";
+    displayCart();
+    checkCart();
+}
 
 /* 
     Permet de supprimer le produit sélectionné. 
@@ -129,7 +168,7 @@ function deleteProduct(e, products, section) {
     }
     section.innerHTML = "";
     displayCart();
-    refreshCart(products);
+    checkCart();
 }
 
 /* Annulation de tout le panier */
@@ -137,7 +176,7 @@ function cancelCart(section) {
     localStorage.removeItem('cartProducts');
     section.innerHTML = "";
     displayCart();
-    refreshCart();
+    checkCart();
 }
 
 /* 

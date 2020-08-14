@@ -45,8 +45,7 @@ function displayProduct(product) {
     })
 
     let select = document.querySelector(".product-section__select");
-    let colors = product.colors;
-    colors.forEach (function (color) {
+    product.colors.forEach (function (color) {
         let option = document.createElement("option");
         option.value = color;
         option.textContent = color;
@@ -60,18 +59,40 @@ function displayProduct(product) {
     Sinon elle récupère le tableau du localStorage, ajoute le nouveau produit, et enregistre le nouveau tableau
 */
 function addToCart (product) {
-    // let cartProducts = JSON.parse(localStorage.getItem('cartProducts')) || [];
+
     let cartProducts = []
 
+    let saveToCartProduct = {
+        _id: product._id,
+        name: product.name,
+        price: product.price,
+        quantity: 1,
+        selectedColor: product.selectedColor
+    }
+
+    let newDifferentProduct = true;
+
     if (localStorage.getItem('cartProducts') === null) {
-        cartProducts.push(product);
+
+        cartProducts.push(saveToCartProduct);
+        // cartProducts.push(product);
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-        checkCart();
     }
     else {
         cartProducts = JSON.parse(localStorage.getItem('cartProducts'));
-        cartProducts.push(product);
+
+        cartProducts.forEach((prod) => {
+            if (product._id === prod._id && product.selectedColor === prod.selectedColor) {
+                // console.log(`${product.name} = ${prod.name}`);
+                prod.quantity++;
+                newDifferentProduct = false;
+            }
+        })
+
+        if (newDifferentProduct) cartProducts.push(saveToCartProduct);
+
         localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
-        refreshCart(cartProducts);
     }
+
+    checkCart();
 }
